@@ -151,12 +151,61 @@
         function showMessage() {
             const messages = [
                 "爸爸，您辛苦了！",
-                "感谢您的养育之恩",
-                "愿您永远健康快乐",
-                "我爱您！"
+                "感谢您的养育之恩。",
+                "愿您永远健康快乐。",
+                "我爱您！父亲节快乐！"
             ];
-            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-            alert(randomMessage);
+            let index = 0;
+            // 创建弹窗元素
+            let modal = document.createElement('div');
+            modal.style.position = 'fixed';
+            modal.style.left = 0;
+            modal.style.top = 0;
+            modal.style.width = '100vw';
+            modal.style.height = '100vh';
+            modal.style.background = 'rgba(0,0,0,0.45)';
+            modal.style.display = 'flex';
+            modal.style.alignItems = 'center';
+            modal.style.justifyContent = 'center';
+            modal.style.zIndex = 9999;
+
+            let card = document.createElement('div');
+            card.style.background = '#fffbe6';
+            card.style.borderRadius = '18px';
+            card.style.boxShadow = '0 2px 12px 0 rgba(255, 215, 0, 0.18)';
+            card.style.padding = '32px 28px';
+            card.style.fontSize = '22px';
+            card.style.color = '#7c4d00';
+            card.style.textAlign = 'center';
+            card.style.maxWidth = '80vw';
+            card.style.minWidth = '220px';
+
+            let msg = document.createElement('div');
+            msg.textContent = messages[index];
+            card.appendChild(msg);
+
+            let btn = document.createElement('button');
+            btn.textContent = '下一个祝福';
+            btn.style.marginTop = '24px';
+            btn.style.background = 'linear-gradient(90deg, #ffb347 0%, #ff4d4d 100%)';
+            btn.style.color = 'white';
+            btn.style.border = 'none';
+            btn.style.padding = '12px 32px';
+            btn.style.borderRadius = '20px';
+            btn.style.fontSize = '18px';
+            btn.style.cursor = 'pointer';
+            btn.onclick = function() {
+                index++;
+                if(index < messages.length) {
+                    msg.textContent = messages[index];
+                    if(index === messages.length-1) btn.textContent = '关闭';
+                } else {
+                    document.body.removeChild(modal);
+                }
+            };
+            card.appendChild(btn);
+            modal.appendChild(card);
+            document.body.appendChild(modal);
         }
         // 音乐播放控制
         const bgm = document.getElementById('bgm');
