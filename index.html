@@ -13,86 +13,136 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, #f7cac9 0%, #92a8d1 100%);
             font-family: "Microsoft YaHei", sans-serif;
-            color: white;
+            color: #333;
             text-align: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+        /* 柔和光斑背景 */
+        .bokeh {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .bokeh span {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.25;
+            filter: blur(10px);
+            background: radial-gradient(circle, #fffbe6 0%, #f7cac9 100%);
         }
         .container {
-            padding: 20px;
+            padding: 30px 20px 20px 20px;
             max-width: 600px;
+            background: rgba(255,255,255,0.85);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.12);
+            z-index: 1;
+            margin-top: 40px;
         }
         .heart {
-            font-size: 50px;
+            font-size: 80px;
             color: #ff4d4d;
             animation: heartbeat 1.5s infinite;
+            filter: drop-shadow(0 0 20px #ffb3b3);
+            margin-bottom: 10px;
         }
         @keyframes heartbeat {
             0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            50% { transform: scale(1.25); }
             100% { transform: scale(1); }
         }
-        .message {
+        .title {
+            font-size: 2.8em;
+            font-weight: bold;
+            background: linear-gradient(90deg, #ffd700, #ffb347, #ff4d4d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: 4px;
+        }
+        .message-card {
+            background: #fffbe6;
+            border-radius: 18px;
+            box-shadow: 0 2px 12px 0 rgba(255, 215, 0, 0.10);
+            padding: 24px 18px;
             margin: 20px 0;
-            font-size: 18px;
-            line-height: 1.6;
-        }
-        .photo-frame {
-            width: 200px;
-            height: 200px;
-            border: 5px solid white;
-            border-radius: 10px;
-            margin: 20px auto;
-            overflow: hidden;
-            position: relative;
-        }
-        .photo-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            font-size: 20px;
+            color: #7c4d00;
+            line-height: 1.8;
         }
         .button {
-            background-color: #ff4d4d;
+            background: linear-gradient(90deg, #ffb347 0%, #ff4d4d 100%);
             color: white;
             border: none;
-            padding: 15px 30px;
+            padding: 15px 36px;
             border-radius: 25px;
-            font-size: 18px;
+            font-size: 20px;
             cursor: pointer;
-            margin: 20px 0;
-            transition: transform 0.3s;
+            margin: 20px 0 0 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 16px 0 rgba(255, 99, 71, 0.10);
         }
         .button:hover {
-            transform: scale(1.1);
+            transform: scale(1.08);
+            box-shadow: 0 8px 24px 0 rgba(255, 99, 71, 0.18);
         }
         .floating {
             animation: floating 3s ease-in-out infinite;
         }
         @keyframes floating {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-18px); }
             100% { transform: translateY(0px); }
+        }
+        /* 悬浮音乐按钮美化 */
+        .music-bar {
+            position:fixed;
+            bottom:30px;
+            left:0;
+            width:100%;
+            text-align:center;
+            z-index:1000;
+            pointer-events: none;
+        }
+        .music-bar .button {
+            pointer-events: auto;
+            font-size: 18px;
+            padding: 10px 28px;
+            margin: 0 auto;
+        }
+        @media (max-width: 600px) {
+            .container { padding: 18px 4px 12px 4px; }
+            .title { font-size: 2em; }
+            .message-card { font-size: 16px; padding: 16px 8px; }
+            .heart { font-size: 56px; }
         }
     </style>
 </head>
 <body>
+    <!-- 柔和光斑背景 -->
+    <div class="bokeh">
+        <span style="width:120px;height:120px;top:10%;left:15%;background:radial-gradient(circle,#fffbe6 0%,#f7cac9 100%);"></span>
+        <span style="width:80px;height:80px;top:60%;left:70%;background:radial-gradient(circle,#fffbe6 0%,#92a8d1 100%);"></span>
+        <span style="width:100px;height:100px;top:40%;left:50%;background:radial-gradient(circle,#fffbe6 0%,#ffd700 100%);"></span>
+        <span style="width:60px;height:60px;top:80%;left:20%;background:radial-gradient(circle,#fffbe6 0%,#ffb347 100%);"></span>
+    </div>
     <div class="container">
         <div class="heart floating">❤️</div>
-        <h1>亲爱的爸爸</h1>
-        <div class="message">
-            <p>感谢您一直以来的付出和关爱</p>
-            <p>您是我生命中最重要的人</p>
-            <p>祝您父亲节快乐！</p>
-        </div>
-        <div class="photo-frame">
-            <!-- 这里可以放置您和父亲的合照 -->
-            <img src="https://via.placeholder.com/200" alt="父子合照">
+        <div class="title">父亲节快乐</div>
+        <div class="message-card">
+            <p>亲爱的爸爸：</p>
+            <p>感谢您一直以来的付出和关爱，<br>您是我生命中最重要的人。</p>
+            <p>祝您父亲节快乐，健康幸福！</p>
         </div>
         <button class="button" onclick="showMessage()">点击查看我的祝福</button>
     </div>
     <!-- 背景音乐播放器 -->
-    <audio id="bgm" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfa1c82.mp3" loop preload="auto"></audio>
-    <div style="position:fixed;bottom:30px;left:0;width:100%;text-align:center;z-index:1000;">
+    <audio id="bgm" src="./许飞-父亲写的散文诗(1).mp3" loop preload="auto"></audio>
+    <div class="music-bar">
         <button class="button" id="musicBtn" onclick="toggleMusic()">播放音乐 🎵</button>
     </div>
     <script>
