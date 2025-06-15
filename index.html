@@ -143,7 +143,7 @@
         <button class="button" onclick="showMessage()">点击查看我的祝福</button>
     </div>
     <!-- 背景音乐播放器 -->
-    <audio id="bgm" src="./许飞-父亲写的散文诗(1).mp3" loop preload="auto"></audio>
+    <audio id="bgm" src="./许飞-父亲写的散文诗(1).mp3" loop preload="auto" autoplay></audio>
     <div class="music-bar">
         <button class="button" id="musicBtn" onclick="toggleMusic()">播放音乐 🎵</button>
     </div>
@@ -172,18 +172,15 @@
             }
             isPlaying = !isPlaying;
         }
-        // 页面加载后自动播放（兼容移动端）
+        // 自动播放音乐（兼容移动端首次交互）
+        function playMusic() {
+            if (!isPlaying) {
+                bgm.play();
+                isPlaying = true;
+            }
+        }
         window.addEventListener('load', function() {
-            const playMusic = () => {
-                if (!isPlaying) {
-                    bgm.play();
-                    musicBtn.textContent = '暂停音乐 ⏸️';
-                    isPlaying = true;
-                }
-            };
-            // PC端尝试自动播放
             playMusic();
-            // 移动端首次交互后自动播放
             document.body.addEventListener('touchstart', function once() {
                 playMusic();
                 document.body.removeEventListener('touchstart', once);
