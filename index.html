@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>父亲节快乐</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            font-family: "Microsoft YaHei", sans-serif;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+            max-width: 600px;
+        }
+        .heart {
+            font-size: 50px;
+            color: #ff4d4d;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .message {
+            margin: 20px 0;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            border: 5px solid white;
+            border-radius: 10px;
+            margin: 20px auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: transform 0.3s;
+        }
+        .button:hover {
+            transform: scale(1.1);
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heart floating">❤️</div>
+        <h1>亲爱的爸爸</h1>
+        <div class="message">
+            <p>感谢您一直以来的付出和关爱</p>
+            <p>您是我生命中最重要的人</p>
+            <p>祝您父亲节快乐！</p>
+        </div>
+        <div class="photo-frame">
+            <!-- 这里可以放置您和父亲的合照 -->
+            <img src="https://via.placeholder.com/200" alt="父子合照">
+        </div>
+        <button class="button" onclick="showMessage()">点击查看我的祝福</button>
+    </div>
+
+    <script>
+        function showMessage() {
+            const messages = [
+                "爸爸，您辛苦了！",
+                "感谢您的养育之恩",
+                "愿您永远健康快乐",
+                "我爱您！"
+            ];
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            alert(randomMessage);
+        }
+    </script>
+</body>
+</html> 
